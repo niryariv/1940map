@@ -32,30 +32,13 @@
 <div id='map'></div>
 
 <script>
-	const map = L.map('map', {maxZoom: 16, minZoom:16})
+	const map = L.map('map', {maxZoom: 16, minZoom:16}).setView([32.7941, 34.9896], 16)
 
 	const tiles = L.tileLayer('https://niryariv.github.io/1940map/tiles/{z}/{x}/{y}.jpg', {
 		
 		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 	}).addTo(map);
 
-	function onLocationFound(e) {
-		const radius = e.accuracy / 2;
-
-		const locationMarker = L.marker(e.latlng).addTo(map)
-			.bindPopup(`You are within ${radius} meters from this point`).openPopup();
-
-		const locationCircle = L.circle(e.latlng, radius).addTo(map);
-	}
-
-	function onLocationError(e) {
-		alert(e.message);
-	}
-
-	map.on('locationfound', onLocationFound);
-	map.on('locationerror', onLocationError);
-
-	map.locate({setView: true, maxZoom: 16});
 </script>
 
 
